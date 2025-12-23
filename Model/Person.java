@@ -8,7 +8,6 @@ public abstract class Person {
     protected String email;
     protected Date date_of_birth;
 
-
     public Person(String user_id, String first_name, String last_name, String phone_number, String email, Date date_of_birth) {
         this.user_id = user_id;
         this.first_name = first_name;

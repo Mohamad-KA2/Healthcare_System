@@ -311,8 +311,7 @@ public class Loader {
         }
         return lines;
     }
-    
-    // Helper method to parse CSV lines with quoted fields from the CSV files
+
     private static String[] parseCSVLine(String line) {
         List<String> fields = new ArrayList<>();
         boolean inQuotes = false;

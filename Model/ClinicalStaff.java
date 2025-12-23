@@ -74,8 +74,7 @@ public class ClinicalStaff extends Person {
     public void setStart_date(Date start_date) {
         this.start_date = start_date;
     }
-    
-    // Clinical Staff Methods
+
     public Patient view_patient_record(String patient_id) {
         AppointmentManager manager = AppointmentManager.getInstance();
         return manager.find_patient(patient_id);
@@ -86,15 +85,13 @@ public class ClinicalStaff extends Person {
                                            String instructions, String pharmacy_name) {
         Date prescriptionDate = new Date(java.time.LocalDate.now());
         Date issueDate = new Date(java.time.LocalDate.now());
-        
-        // Generate prescription ID
         String prescriptionId = "RX" + System.currentTimeMillis();
         
         Prescription prescription = new Prescription(
             prescriptionId,
             patient_id,
-            this.getUser_id(),  // clinician_id
-            "",  // appointment_id (optional)
+            this.getUser_id(),
+            "",
             prescriptionDate,
             medication_name,
             dosage,
@@ -123,12 +120,10 @@ public class ClinicalStaff extends Person {
         java.util.List<Refferal> referrals = manager.get_referrals_by_patient(patient_id);
         return referrals.isEmpty() ? null : referrals.get(0);
     }
-    
-    // GP-specific method: only GPs can create referrals
+
     public Refferal create_referral(String patient_id, String referred_to_clinician_id, 
                                     String referred_to_facility_id, String urgency_level, 
                                     String referral_reason, String clinical_summary) {
-        // Check if this is a GP
         if (!this.title.equalsIgnoreCase("GP")) {
             System.err.println("Only GPs can create referrals");
             return null;
@@ -140,9 +135,9 @@ public class ClinicalStaff extends Person {
         Refferal referral = new Refferal(
             referralId,
             patient_id,
-            this.getUser_id(),  // referring_clinician_id
+            this.getUser_id(),
             referred_to_clinician_id,
-            this.workplace_id,  // referring_facility_id
+            this.workplace_id,
             referred_to_facility_id,
             referralDate,
             urgency_level,

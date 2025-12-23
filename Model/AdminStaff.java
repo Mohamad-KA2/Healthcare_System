@@ -64,8 +64,7 @@ public class AdminStaff extends Person {
     public void setAccess_level(String access_level) {
         this.access_level = access_level;
     }
-    
-    // Admin Staff Methods
+
     public java.util.List<Appointment> view_all_appointments(String filePath) {
         return Loader.loadAppointments(filePath);
     }

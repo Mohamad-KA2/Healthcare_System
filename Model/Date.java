@@ -3,7 +3,6 @@ package Model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
 public class Date {
     private LocalDate date;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -40,6 +39,4 @@ public class Date {
     public static String formatDate(LocalDate date) {
         return date.format(FORMATTER);
     }
-
-
 }

@@ -1,6 +1,5 @@
 package Model;
 
-
 public class Refferal {
     private String referral_id;
     private String patient_id;

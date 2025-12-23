@@ -124,5 +124,34 @@ public class ClinicalStaff extends Person {
         return referrals.isEmpty() ? null : referrals.get(0);
     }
     
-    
+    // GP-specific method: only GPs can create referrals
+    public Refferal create_referral(String patient_id, String referred_to_clinician_id, 
+                                    String referred_to_facility_id, String urgency_level, 
+                                    String referral_reason, String clinical_summary) {
+        // Check if this is a GP
+        if (!this.title.equalsIgnoreCase("GP")) {
+            System.err.println("Only GPs can create referrals");
+            return null;
+        }
+        
+        Date referralDate = new Date(java.time.LocalDate.now());
+        String referralId = "R" + System.currentTimeMillis();
+        
+        Refferal referral = new Refferal(
+            referralId,
+            patient_id,
+            this.getUser_id(),  // referring_clinician_id
+            referred_to_clinician_id,
+            this.workplace_id,  // referring_facility_id
+            referred_to_facility_id,
+            referralDate,
+            urgency_level,
+            referral_reason,
+            clinical_summary
+        );
+        
+        RefferalManager manager = RefferalManager.getInstance();
+        manager.create_referral(referral);
+        return referral;
+    }
 }

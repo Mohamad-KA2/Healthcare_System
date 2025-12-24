@@ -52,7 +52,7 @@ public class GUIAppointments extends JFrame {
     }
     
     private void loadData() {
-        String basePath = "/Users/mohamadka/Desktop/Healthcare_git/";
+        String basePath = "Healthcare_System/";
         appointments = Loader.loadAppointments(basePath + "appointments.csv");
     }
     

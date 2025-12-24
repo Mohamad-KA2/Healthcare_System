@@ -6,7 +6,7 @@ public class HealthcareSystem {
     private AppointmentManager appointmentManager;
     private PrescritpionManager prescriptionManager;
     private RefferalManager referralManager;
-    private static final String DATA_PATH = "/Users/mohamadka/Desktop/Healthcare_git/";
+    private static final String DATA_PATH = "Healthcare_System/";
     
     private HealthcareSystem() {
         appointmentManager = AppointmentManager.getInstance();

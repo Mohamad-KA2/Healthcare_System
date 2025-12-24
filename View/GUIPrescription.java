@@ -54,7 +54,7 @@ public class GUIPrescription extends JFrame {
     }
     
     private void loadData() {
-        String basePath = "/Users/mohamadka/Desktop/Healthcare_git/";
+        String basePath = "Healthcare_System/";
         prescriptions = Loader.loadPrescriptions(basePath + "prescriptions.csv");
         for (Prescription p : prescriptions) {
             prescriptionManager.create_prescription(p);
@@ -108,7 +108,7 @@ public class GUIPrescription extends JFrame {
                 );
                 prescriptionManager.create_prescription(newPrescription);
                 prescriptions.add(newPrescription);
-                String basePath = "/Users/mohamadka/Desktop/Healthcare_git/";
+                String basePath = "Healthcare_System/";
                 Loader.savePrescription(basePath + "prescriptions.csv", newPrescription);
                 refreshTable();
                 dialog.dispose();

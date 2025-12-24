@@ -63,7 +63,7 @@ public class GUIPatient extends JFrame {
     }
     
     private void loadData() {
-        String basePath = "/Users/mohamadka/Desktop/Healthcare_git/";
+        String basePath = "Healthcare_System/";
         List<Patient> patients = Loader.loadPatients(basePath + "patients.csv");
         for (Patient p : patients) {
             appointmentManager.register_patient(p);

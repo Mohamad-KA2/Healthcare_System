@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.List;
 
 public class GUILogin extends JFrame {
-    private static final String BASE_PATH = "/Users/mohamadka/Desktop/Healthcare_git/";
+    private static final String BASE_PATH = "Healthcare_System/";
     
     public GUILogin() {
         setTitle("Login");

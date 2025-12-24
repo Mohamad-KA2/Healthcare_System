@@ -12,7 +12,7 @@ public class GUIReferral extends JFrame {
     private RefferalManager referralManager;
     private List<Refferal> referrals;
     private String currentUserId;
-    private static final String BASE_PATH = "/Users/mohamadka/Desktop/Healthcare_git/";
+    private static final String BASE_PATH = "Healthcare_System/";
     
     public GUIReferral(String userId) {
         this.currentUserId = userId;
@@ -84,7 +84,7 @@ public class GUIReferral extends JFrame {
     }
     
     private void loadData() {
-        String basePath = "/Users/mohamadka/Desktop/Healthcare_git/";
+        String basePath = "Healthcare_System/";
         referrals = Loader.loadReferrals(basePath + "referrals.csv");
         for (Refferal r : referrals) {
             referralManager.create_referral(r);

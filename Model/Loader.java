@@ -91,6 +91,42 @@ public class Loader {
         return clinicians;
     }
     
+    public static List<Facility> loadFacilities(String filePath) {
+        List<Facility> facilities = new ArrayList<>();
+        List<String> lines = loadFile(filePath);
+        
+        if (lines.size() <= 1) return facilities;
+        
+        for (int i = 1; i < lines.size(); i++) {
+            String line = lines.get(i);
+            String[] fields = parseCSVLine(line);
+            
+            if (fields.length >= 11) {
+                try {
+                    String facilityId = fields[0];
+                    String facilityName = fields[1];
+                    String facilityType = fields[2];
+                    String address = fields[3];
+                    String postcode = fields[4];
+                    String phoneNumber = fields[5];
+                    String email = fields[6];
+                    String openingHours = fields[7];
+                    String managerName = fields[8];
+                    int capacity = Integer.parseInt(fields[9]);
+                    String specialitiesOffered = fields[10];
+                    
+                    Facility facility = new Facility(facilityId, facilityName, facilityType, address, 
+                                                    postcode, phoneNumber, openingHours, email, 
+                                                    capacity, managerName, specialitiesOffered);
+                    facilities.add(facility);
+                } catch (Exception e) {
+                    System.err.println("Error reading facility line: " + line);
+                }
+            }
+        }
+        return facilities;
+    }
+    
     public static List<Appointment> loadAppointments(String filePath) {
         List<Appointment> appointments = new ArrayList<>();
         List<String> lines = loadFile(filePath);
@@ -123,7 +159,7 @@ public class Loader {
                                                              createdDate, lastModified);
                     appointments.add(appointment);
                 } catch (Exception e) {
-                    System.err.println("Error parsing appointment line: " + line);
+                    System.err.println("Error reading appointment line: " + line);
                 }
             }
         }
@@ -164,7 +200,7 @@ public class Loader {
                                                                 status, issueDate, collectionDate);
                     prescriptions.add(prescription);
                 } catch (Exception e) {
-                    System.err.println("Error parsing prescription line: " + line);
+                    System.err.println("Error reading prescription line: " + line);
                 }
             }
         }
@@ -199,7 +235,7 @@ public class Loader {
                                                      urgencyLevel, referralReason, clinicalSummary);
                     referrals.add(referral);
                 } catch (Exception e) {
-                    System.err.println("Error parsing referral line: " + line);
+                    System.err.println("Error reading referral line: " + line);
                 }
             }
         }

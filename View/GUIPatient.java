@@ -18,11 +18,13 @@ public class GUIPatient extends JFrame {
         loadData();
         
         setTitle("Patient Portal");
-        setSize(800, 500);
+        setSize(1500, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        String[] columns = {"ID", "First Name", "Last Name", "Gender", "Phone", "Email"};
+        String[] columns = {"ID", "First Name", "Last Name", "Phone", "Email", "DOB", 
+                            "NHS Number", "Gender", "Address", "Postcode", 
+                            "Emergency Contact", "Emergency Phone", "Registration Date", "GP Surgery ID"};
         tableModel = new DefaultTableModel(columns, 0);
         patientTable = new JTable(tableModel);
         refreshTable();
@@ -75,8 +77,20 @@ public class GUIPatient extends JFrame {
         List<Patient> patients = appointmentManager.view_all_patients();
         for (Patient p : patients) {
             tableModel.addRow(new Object[]{
-                p.getUser_id(), p.getFirst_name(), p.getLast_name(),
-                p.getGender(), p.getPhone_number(), p.getEmail()
+                p.getUser_id(), 
+                p.getFirst_name(), 
+                p.getLast_name(),
+                p.getPhone_number(), 
+                p.getEmail(),
+                p.getDate_of_birth() != null ? p.getDate_of_birth().toString() : "",
+                p.getNhs_number(),
+                p.getGender(),
+                p.getAdress(),
+                p.getPostcode(),
+                p.getEmergencey_contact_number(),
+                p.getEmergency_contact_phone(),
+                p.getRegestration_date() != null ? p.getRegestration_date().toString() : "",
+                p.getGp_surgery_id()
             });
         }
     }

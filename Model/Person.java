@@ -56,4 +56,12 @@ public abstract class Person {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Date getDate_of_birth() {
+        return date_of_birth;
+    }
+
+    public void setDate_of_birth(Date date_of_birth) {
+        this.date_of_birth = date_of_birth;
+    }
 }

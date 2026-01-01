@@ -17,11 +17,13 @@ public class GUIPrescription extends JFrame {
         loadData();
         
         setTitle("Prescriptions Management");
-        setSize(900, 500);
+        setSize(1400, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        String[] columns = {"ID", "Patient ID", "Medication", "Dosage", "Frequency", "Status"};
+        String[] columns = {"ID", "Patient ID", "Clinician ID", "Appointment ID", "Prescription Date", 
+                            "Medication", "Dosage", "Frequency", "Duration (days)", "Quantity", 
+                            "Instructions", "Pharmacy", "Status", "Issue Date", "Collection Date"};
         tableModel = new DefaultTableModel(columns, 0);
         prescriptionTable = new JTable(tableModel);
         refreshTable();
@@ -65,8 +67,21 @@ public class GUIPrescription extends JFrame {
         tableModel.setRowCount(0);
         for (Prescription p : prescriptions) {
             tableModel.addRow(new Object[]{
-                p.getPrescription_id(), p.getPatient_id(), p.getMedication_name(),
-                p.getDosage(), p.getFrequency(), p.getStatus()
+                p.getPrescription_id(), 
+                p.getPatient_id(), 
+                p.getClinicin_id(), 
+                p.getAppointment_id(),
+                p.getPrescription_date() != null ? p.getPrescription_date().toString() : "",
+                p.getMedication_name(),
+                p.getDosage(), 
+                p.getFrequency(), 
+                p.getDuration_days(),
+                p.getQuantity(),
+                p.getInstructions(),
+                p.getPharmacy_name(),
+                p.getStatus(),
+                p.getIssue_date() != null ? p.getIssue_date().toString() : "",
+                p.getCollection_date() != null ? p.getCollection_date().toString() : ""
             });
         }
     }

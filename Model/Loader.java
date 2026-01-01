@@ -229,10 +229,18 @@ public class Loader {
                     String urgencyLevel = fields[7];
                     String referralReason = fields[8];
                     String clinicalSummary = fields[9].replace("\"", "");
+                    String requestedInvestigations = fields.length > 10 ? fields[10] : "";
+                    String status = fields.length > 11 ? fields[11] : "";
+                    String appointmentId = fields.length > 12 ? fields[12] : "";
+                    String notes = fields.length > 13 ? fields[13].replace("\"", "") : "";
+                    Date createdDate = fields.length > 14 && !fields[14].isEmpty() ? new Date(fields[14]) : null;
+                    Date lastUpdated = fields.length > 15 && !fields[15].isEmpty() ? new Date(fields[15]) : null;
                     
                     Refferal referral = new Refferal(referralId, patientId, referringClinicianId, referredToClinicianId,
                                                      referringFacilityId, referredToFacilityId, referralDate,
-                                                     urgencyLevel, referralReason, clinicalSummary);
+                                                     urgencyLevel, referralReason, clinicalSummary,
+                                                     requestedInvestigations, status, appointmentId, notes,
+                                                     createdDate, lastUpdated);
                     referrals.add(referral);
                 } catch (Exception e) {
                     System.err.println("Error reading referral line: " + line);
@@ -268,7 +276,7 @@ public class Loader {
     
     public static void saveReferral(String filePath, Refferal referral) {
         try (FileWriter writer = new FileWriter(filePath, true)) {
-            String line = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,\"%s\"%n",
+            String line = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,\"%s\",%s,%s,%s,\"%s\",%s,%s%n",
                 referral.getReferral_id(),
                 referral.getPatient_id(),
                 referral.getReferring_clnician_id(),
@@ -278,7 +286,13 @@ public class Loader {
                 referral.getReferred_date(),
                 referral.getUrgency_level(),
                 referral.getReferral_reason(),
-                referral.getClinical_summary());
+                referral.getClinical_summary(),
+                referral.getRequested_investigations(),
+                referral.getStatus(),
+                referral.getAppointment_id(),
+                referral.getNotes(),
+                referral.getCreated_date() != null ? referral.getCreated_date().toString() : "",
+                referral.getLast_updated() != null ? referral.getLast_updated().toString() : "");
             writer.write(line);
         } catch (IOException e) {
             System.err.println("Error saving referral: " + e.getMessage());

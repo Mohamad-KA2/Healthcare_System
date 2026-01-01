@@ -142,7 +142,13 @@ public class ClinicalStaff extends Person {
             referralDate,
             urgency_level,
             referral_reason,
-            clinical_summary
+            clinical_summary,
+            "",
+            "New",
+            "",
+            "",
+            referralDate,
+            referralDate
         );
         
         RefferalManager manager = RefferalManager.getInstance();

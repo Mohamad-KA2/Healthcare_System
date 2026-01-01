@@ -15,11 +15,13 @@ public class GUIAppointments extends JFrame {
         loadData();
         
         setTitle("Appointments Management");
-        setSize(900, 500);
+        setSize(1500, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        String[] columns = {"ID", "Patient ID", "Clinician ID", "Date", "Time", "Type", "Status"};
+        String[] columns = {"ID", "Patient ID", "Clinician ID", "Facility ID", "Date", "Time", 
+                            "Duration (min)", "Type", "Status", "Reason", "Notes", 
+                            "Created Date", "Last Modified"};
         tableModel = new DefaultTableModel(columns, 0);
         appointmentTable = new JTable(tableModel);
         refreshTable();
@@ -60,9 +62,19 @@ public class GUIAppointments extends JFrame {
         tableModel.setRowCount(0);
         for (Appointment a : appointments) {
             tableModel.addRow(new Object[]{
-                a.getAppointment_id(), a.getPatient_id(), a.getClinician_id(),
-                a.getAppointment_date(), a.getAppointment_time(),
-                a.getAppointment_type(), a.getStatus()
+                a.getAppointment_id(), 
+                a.getPatient_id(), 
+                a.getClinician_id(),
+                a.getFacility_id(),
+                a.getAppointment_date() != null ? a.getAppointment_date().toString() : "",
+                a.getAppointment_time(),
+                a.getDuration_minutes(),
+                a.getAppointment_type(), 
+                a.getStatus(),
+                a.getReason_for_visit(),
+                a.getNotes(),
+                a.getCreated_date() != null ? a.getCreated_date().toString() : "",
+                a.getLast_modified() != null ? a.getLast_modified().toString() : ""
             });
         }
     }

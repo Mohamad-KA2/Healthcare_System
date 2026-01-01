@@ -11,8 +11,14 @@ public class Refferal {
     private String urgency_level;
     private String referral_reason;
     private String clinical_summary;
+    private String requested_investigations;
+    private String status;
+    private String appointment_id;
+    private String notes;
+    private Date created_date;
+    private Date last_updated;
 
-    public Refferal(String referral_id, String patient_id, String referring_clnician_id, String referred_to_clinician_id, String referring_facility_id, String referred_to_facility_id, Date referred_date, String urgency_level, String referral_reason, String clinical_summary) {
+    public Refferal(String referral_id, String patient_id, String referring_clnician_id, String referred_to_clinician_id, String referring_facility_id, String referred_to_facility_id, Date referred_date, String urgency_level, String referral_reason, String clinical_summary, String requested_investigations, String status, String appointment_id, String notes, Date created_date, Date last_updated) {
         this.referral_id = referral_id;
         this.patient_id = patient_id;
         this.referring_clnician_id = referring_clnician_id;
@@ -23,6 +29,12 @@ public class Refferal {
         this.urgency_level = urgency_level;
         this.referral_reason = referral_reason;
         this.clinical_summary = clinical_summary;
+        this.requested_investigations = requested_investigations;
+        this.status = status;
+        this.appointment_id = appointment_id;
+        this.notes = notes;
+        this.created_date = created_date;
+        this.last_updated = last_updated;
     }
 
     public String getReferral_id() { return referral_id; }
@@ -54,4 +66,22 @@ public class Refferal {
 
     public String getClinical_summary() { return clinical_summary; }
     public void setClinical_summary(String clinical_summary) { this.clinical_summary = clinical_summary; }
+
+    public String getRequested_investigations() { return requested_investigations; }
+    public void setRequested_investigations(String requested_investigations) { this.requested_investigations = requested_investigations; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public String getAppointment_id() { return appointment_id; }
+    public void setAppointment_id(String appointment_id) { this.appointment_id = appointment_id; }
+
+    public String getNotes() { return notes; }
+    public void setNotes(String notes) { this.notes = notes; }
+
+    public Date getCreated_date() { return created_date; }
+    public void setCreated_date(Date created_date) { this.created_date = created_date; }
+
+    public Date getLast_updated() { return last_updated; }
+    public void setLast_updated(Date last_updated) { this.last_updated = last_updated; }
 }

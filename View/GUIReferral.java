@@ -20,11 +20,14 @@ public class GUIReferral extends JFrame {
         loadData();
         
         setTitle("Referrals Management");
-        setSize(900, 500);
+        setSize(1600, 650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        String[] columns = {"ID", "Patient ID", "Referring Dr", "Referred To", "Reason", "Urgency"};
+        String[] columns = {"ID", "Patient ID", "Referring Clinician", "Referred To Clinician", 
+                            "Referring Facility", "Referred To Facility", "Referral Date", 
+                            "Urgency", "Reason", "Clinical Summary", "Investigations", "Status",
+                            "Appointment ID", "Notes", "Created Date", "Last Updated"};
         tableModel = new DefaultTableModel(columns, 0);
         referralTable = new JTable(tableModel);
         refreshTable();
@@ -95,9 +98,22 @@ public class GUIReferral extends JFrame {
         tableModel.setRowCount(0);
         for (Refferal r : referrals) {
             tableModel.addRow(new Object[]{
-                r.getReferral_id(), r.getPatient_id(),
-                r.getReferring_clnician_id(), r.getReferred_to_clinician_id(),
-                r.getReferral_reason(), r.getUrgency_level()
+                r.getReferral_id(), 
+                r.getPatient_id(),
+                r.getReferring_clnician_id(), 
+                r.getReferred_to_clinician_id(),
+                r.getReferring_facility_id(),
+                r.getReferred_to_facility_id(),
+                r.getReferred_date() != null ? r.getReferred_date().toString() : "",
+                r.getUrgency_level(),
+                r.getReferral_reason(),
+                r.getClinical_summary(),
+                r.getRequested_investigations(),
+                r.getStatus(),
+                r.getAppointment_id(),
+                r.getNotes(),
+                r.getCreated_date() != null ? r.getCreated_date().toString() : "",
+                r.getLast_updated() != null ? r.getLast_updated().toString() : ""
             });
         }
     }
@@ -161,7 +177,8 @@ public class GUIReferral extends JFrame {
                     idField.getText(), patientIdField.getText(),
                     referringField.getText(), referredToField.getText(),
                     "S001", "H001", refDate, urgencyField.getText(),
-                    reasonField.getText(), summaryArea.getText()
+                    reasonField.getText(), summaryArea.getText(),
+                    "", "New", "", "", refDate, refDate
                 );
                 referralManager.create_referral(newReferral);
                 referrals.add(newReferral);

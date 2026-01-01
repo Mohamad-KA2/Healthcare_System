@@ -133,7 +133,8 @@ public class HealthcareSystem {
         Refferal newReferral = new Refferal(
             "R999", "P999", "C001", "C005", "S001", "H001",
             prescriptionDate, "Routine", "Chest pain investigation",
-            "30-year-old female with intermittent chest discomfort"
+            "30-year-old female with intermittent chest discomfort",
+            "ECG|Echocardiogram", "New", "", "", prescriptionDate, prescriptionDate
         );
         system.createReferral(newReferral);
         System.out.println("   Created: " + newReferral.getReferral_id() + 
